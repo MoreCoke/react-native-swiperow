@@ -26,6 +26,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import SwipeRow from 'app/component/SwipeRow';
+
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -66,6 +68,11 @@ const App: () => Node = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
+        <SwipeRow
+          onEditPress={() => alert('編輯')}
+          onDeletePress={() => alert('刪除')}
+          actions={['Edit', 'Delete']}
+        />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
