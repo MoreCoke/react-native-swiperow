@@ -51,6 +51,7 @@ class SwipeRow extends Component {
     const trans = progress.interpolate({
       inputRange: [0, 1],
       outputRange: [x, 0],
+      extrapolate: 'clamp',
     });
     return (
       <Animated.View
