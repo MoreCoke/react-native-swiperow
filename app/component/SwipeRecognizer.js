@@ -20,16 +20,20 @@ export default function SwipeRecognizer(props) {
 
   const onHandlerStateChange = ({nativeEvent}) => {
     if (nativeEvent.oldState === State.ACTIVE) {
-      handleSwipeEvent(nativeEvent);
+      handleRelease(nativeEvent);
     }
   };
 
-  const handleSwipeEvent = ev => {
-    const direction = getSwipeDirection(ev);
+  const handleRelease = ev => {
+    const swipeDirection = getSwipeDirection(ev);
+    triggerSwipeHandlers(swipeDirection, ev);
+  };
+
+  const triggerSwipeHandlers = (swipeDirection, ev) => {
     const {onSwipe, onSwipeLeft, onSwipeRight} = props;
     const {SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
     onSwipe && onSwipe(ev);
-    switch (direction) {
+    switch (swipeDirection) {
       case SWIPE_LEFT:
         onSwipeLeft && onSwipeLeft(ev);
         break;
